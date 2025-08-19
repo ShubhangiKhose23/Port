@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubhangi Khose - Full Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00BCD4; /* Base Cyan */
+            --secondary-color: #00838F; /* Darker Cyan for strong text/borders */
+            --accent-color: #4DD0E1; /* Lighter, more vibrant Cyan for accents */
+            --light-bg: #E0F7FA; /* Very light Cyan background for page */
+            --faint-cyan-bg: #F0FCFD; /* Very faint cyan for header/footer background */
+            --dark-text: #263238; /* Dark nearly black for general text for readability */
+            --medium-text: #546E7A; /* Medium gray for secondary text */
+            --border-color: #80DEEA; /* Medium light Cyan for borders */
+            --link-color-dark-bg: #B2EBF2; /* Lighter cyan for links on dark bg */
+            --link-color-light-bg: #00ACC1; /* Darker cyan for links on light bg */
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background: var(--light-bg);
+            color: var(--dark-text);
+            scroll-behavior: smooth;
+            font-size: 16px; /* Decreased base font size */
+        }
+
+        .page-wrapper {
+            width: 250mm; /* Increased page width */
+            min-height: 200mm; /* Decreased minimum page height */
+            margin: 30px auto;
+            padding: 15mm; /* Decreased padding */
+            background: white;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Decreased space between major sections */
+        }
+
+        header {
+            background: var(--faint-cyan-bg); /* Changed to faint cyan */
+            color: var(--dark-text); /* Changed to dark text for contrast */
+            padding: 0; /* Further decreased padding */
+            min-height: 20px; /* Set header height to 100px */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            margin-bottom: 15px; /* Decreased margin-bottom */
+            border: 1px solid var(--border-color); /* Added border for definition */
+            display: flex; /* Use flexbox for vertical centering */
+            flex-direction: column;
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(0,188,212,0.1) 0%, rgba(0,96,100,0) 70%); /* Adjusted gradient opacity */
+            transform: rotate(45deg);
+            opacity: 0.5;
+            animation: pulse-bg 10s infinite alternate;
+        }
+
+        @keyframes pulse-bg {
+            from { transform: scale(1) rotate(45deg); opacity: 0.5; }
+            to { transform: scale(1.2) rotate(45deg); opacity: 0.7; }
+        }
+
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em; /* Decreased font size */
+            margin: 0; /* Removed margin to fit within 100px height */
+            color: var(--primary-color); /* Kept primary color for highlight */
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            /* Removed fixed height for h1 to allow it to fit header */
+        }
+
+        header p {
+            font-size: 1em; /* Decreased font size */
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            font-weight: 400;
+            color: var(--medium-text); /* Adjusted for contrast */
+            margin: 0; /* Removed margin to fit within 100px height */
+        }
+
+        .section-box {
+            padding: 15px; /* Further decreased padding */
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .section-box:hover {
+            transform: translateY(-5px) scale(1.005); /* Slight lift and scale */
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 1.8em; /* Decreased font size */
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary-color);
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.3em; /* Decreased font size */
+            font-weight: 600;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            font-size: 0.9em; /* Decreased font size */
+        }
+
+        ul li::before {
+            content: '✓';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.3em; /* Larger checkmark */
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px; /* Increased gap */
+            margin-top: 20px;
+        }
+
+        .skills-list div {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 20px; /* Increased padding */
+            border-radius: 25px;
+            font-size: 0.85em; /* Decreased font size */
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .skills-list div:hover {
+            background: var(--accent-color);
+        }
+
+        .project-item, .internship-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px dashed var(--border-color);
+            position: relative;
+        }
+
+        .project-item:last-child, .internship-item:last-child {
+            border-bottom: none;
+        }
+
+        .project-item h3, .internship-item h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.4em; /* Decreased font size */
+        }
+
+        .project-item p, .internship-item p {
+            margin: 8px 0;
+            font-size: 0.9em; /* Decreased font size */
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px; /* Further decreased padding */
+            background: var(--faint-cyan-bg); /* Changed to faint cyan */
+            color: var(--dark-text); /* Changed to dark text for contrast */
+            margin-top: auto;
+            border-top: 5px solid var(--primary-color);
+            font-size: 0.9em; /* Decreased font size */
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color); /* Added border for definition */
+        }
+
+        footer a {
+            color: var(--link-color-light-bg); /* Darker cyan for links on light background */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        /* Standardized Grid Layout for content sections */
+        .content-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(calc(50% - 15px), 1fr)); /* Adjusted min-width for larger page */
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        /* For sections that should always be full width */
+        .content-row.full-width {
+            grid-template-columns: 1fr;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1200px) { /* Adjust breakpoint for new page width */
+            .page-wrapper {
+                width: 90%; /* Adjust width for smaller screens */
+                margin: 20px auto;
+                padding: 15px;
+            }
+            body {
+                font-size: 15px;
+            }
+            header h1 {
+                font-size: 2.2em;
+            }
+            h2 {
+                font-size: 1.7em;
+            }
+            h3 {
+                font-size: 1.2em;
+            }
+            .content-row {
+                grid-template-columns: 1fr; /* Stack columns on smaller screens */
+                gap:12px;
+            }
+            .section-box {
+                padding: 20px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.6em;
+            }
+            .skills-list div {
+                font-size: 0.8em;
+                padding: 8px 12px;
+            }
+            ul li {
+                font-size: 0.85em;
+                padding-left: 25px;
+            }
+            .page-wrapper {
+                padding: 15mm;
+                gap: 12px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 1.4em;
+            }
+            .page-wrapper {
+                padding: 10mm;
+            }
+        }
+
+        /* Print-specific styles */
+        @media print {
+            body {
+                font-size: 12pt;
+                margin: 0;
+                padding: 0;
+                background: white;
+                color: black;
+            }
+            .page-wrapper {
+                width: 210mm; /* Revert to standard A4 width for printing */
+                min-height: 297mm;
+                margin: 0;
+                padding: 15mm;
+                box-shadow: none;
+                border: none;
+            }
+            header, footer, .section-box {
+                box-shadow: none;
+                border-radius: 0;
+                background: white;
+                color: black;
+            }
+            header {
+                padding: 20px 0;
+                border-bottom: 2px solid #ccc;
+                min-height: auto; /* Allow header height to be dynamic for print */
+            }
+            header::before {
+                display: none;
+            }
+            h2 {
+                border-bottom-color: #ccc;
+            }
+            h2::after {
+                background-color: #ccc;
+            }
+            .skills-list div {
+                background: #eee;
+                color: #333;
+                box-shadow: none;
+                border: 1px solid #ccc; /* Add subtle border for print */
+            }
+            a {
+                color: #007bff !important;
+                text-decoration: underline !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header>
+            <h1>SHUBHANGI KHOSE</h1>
+            <p>Full Stack Developer | Java Developer</p>
+        </header>
+
+        <div class="content-row full-width">
+            <section id="about" class="section-box">
+                <h2>About Me</h2>
+                <p>Seeking a challenging Full Stack Developer or Java Developer position to leverage my expertise in Java technologies, Spring Boot, and web development to deliver scalable, high-quality software solutions and contribute to the growth and success of the team.</p>
+            </section>
+        </div>
+
+        <div class="content-row">
+            <section id="education" class="section-box">
+                <h2>Education</h2>
+                <ul>
+                    <li>
+                        <strong>Bachelor of Computer Engineering</strong>
+                        <ul>
+                            <li>Savitribai Phule Pune University</li>
+                            <li>2020-2023 (81.80%)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Diploma in Computer Engineering</strong>
+                        <ul>
+                            <li>MSBTE</li>
+                            <li>2018-2020 (84.57%)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="internships" class="section-box">
+                <h2>Internships</h2>
+                <div class="internship-item">
+                    <h3>Web Development Intern</h3>
+                    <p><strong>Gustovally 4.0</strong> (Jan 2022 - Feb 2022)</p>
+                    <ul>
+                        <li>Developed responsive web pages using HTML, CSS, and Bootstrap.</li>
+                        <li>Integrated front-end designs with back-end databases using JavaScript.</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <div class="content-row">
+            <section id="skills" class="section-box">
+                <h2>Skills</h2>
+                <h3>Technical Skills</h3>
+                <div class="skills-list">
+                    <div>Programming Languages: C, C++, Core Java</div>
+                    <div>Web Technologies: HTML, CSS 3, JavaScript</div>
+                    <div>Frameworks & Libraries: Spring, Spring Boot, Hibernate</div>
+                    <div>Database Technologies: SQL, JDBC</div>
+                    <div>Web Development: Servlet, JSP</div>
+                    <div>Tools & IDEs: Eclipse, VSCode</div>
+                </div>
+            </section>
+        </div>
+
+        <div class="content-row">
+            <section id="projects" class="section-box">
+                <h2>Projects</h2>
+                <div class="project-item">
+                    <h3>Credit Card Fraud Detection</h3>
+                    <p>Developed a web application utilizing Random Forest algorithm to track and analyze fraudulent transactions, offering real-time fraud detection with 99% accuracy.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Banking System</h3>
+                    <p>Built a simple Spring Boot application providing functionalities like creating bank accounts, fetching account details, making deposits/withdrawals, and account deletion.</p>
+                </div>
+            </section>
+
+            <section id="training" class="section-box">
+                <h2>Training</h2>
+                <p><strong>Full Stack Developer Training Course</strong></p>
+                <p>Full Stack Developer Training Course, RS Softech Institute, Pune (Duration: 6 months)
+                Gained hands-on experience with Java technologies including Spring, Hibernate.</p>
+            </section>
+        </div>
+
+        <footer>
+            <p>Contact: <a href="tel:7887976656">7887976656</a> | <a href="mailto:shubhangikhose237@gmail.com">shubhangikhose237@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://in.linkedin.com/in/shubhangi-khose-15765a214" target="_blank">Shubhangi Khose</a></p>
+            <p>GitHub: <a href="https://github.com/ShubhangiKhose23" target="_blank">ShubhangiKhose23</a></p>
+            <p>&copy; 2025 Shubhangi Khose. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
